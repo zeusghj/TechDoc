@@ -1,0 +1,22 @@
+必要条件： 需要一个crt证书跟一个key文件。这个在申请ssl证书（比如：沃通根证书）时获得。
+	 ca-bundle.pem文件（此文件可以由ca沃通根证书，ca沃通免费ssl证书 ，加crt证书分别导出的p7b文件转换	 为pem文件合并而来，具体的用到的命令参考如下）：
+
+
+1，将webclip-unsign.mobileconfig 签名为  webclip.mobileconfig
+
+openssl smime -sign -in webclip-unsign.mobileconfig -out webclip.mobileconfig -signer 1_md.zylzy.cn_bundle.crt -inkey 2_md.zylzy.cn.key -certfile ca-bundle1.pem -outform der -nodetach
+
+
+2，将p7b文件转换为pem
+openssl pkcs7 -in ca-bundle.p7b -inform DER -print_certs > ca-bundle.pem
+
+
+3, 将p12文件转换为pem
+openssl pkcs12 -clcerts -nokeys -out apns-cert.pem -in apns-cert.p12
+openssl pkcs12 -nocerts -out apns-key.pem -in apns-key.p12
+
+4，合并pem
+cat caroot.pem ca-bundle.pem md.zylzy.cn.pem > ca-bundle1.pem 
+
+5,沃通根证书文件地址
+http://www.wosign.com/DVSSL/DV_KuaiSSL_Free.htm
