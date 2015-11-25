@@ -1,0 +1,57 @@
+-,安装CocoaPods
+1> 通过淘宝镜像来访问cocoapods
+天朝，由于cocoapods.org被墙，我们可以使用淘宝的ruby镜像来访问
+ 
+$gem sources –remove https://rubygems.org/
+ 
+$gem sources –a http://ruby.taobao.org/
+ 
+$gem sources –l      (用该命令查看ruby镜像是否是taobao)
+
+2> 安装CocoaPods
+
+$sudo gem install cocoapods    (需要输入管理员密码)
+ 
+ 
+ 
+3> 验证cocoapods是否安装成功
+ 
+$pod
+
+二, cocoapods的简单使用
+1>  查看第三方库是否支持cocoapods
+ 
+$pod search SDWebImage(以SDWebImage为例)
+  
+只截取前面一部分，列表会给出所有cocoapods支持的与关键字有关的第三方框架和版本号
+
+2> 项目中加入cocoapods的支持
+   进入项目目录，新建一个Podfile文件
+   touch Podfile  （必须是这个文件名）
+   
+   vim Podfile  添加需要安装的第三方库名称  例如：
+   （source 'https://github.com/CocoaPods/Specs.git'
+	pod 'AFNetworking'
+	pod 'FMDB'
+	pod 'JSONModel'）
+   保存退出；
+
+3> 在终端运行命令：$pod install （会安装Podfile里面记录的第三方库）
+ 
+取决于网速的环境，安装时间可能会比较久. 注意最后一句话，from now on use ‘podsTest.xcworkspace’,
+
+4> 多了几个文件，Pods文件夹存放你下载的第三方库.以后打开工程不再是使用xcodeproj,而是使用xcworkspace…因为你打开workspace工作空间，你发现里面包含两个xcodeproj工程文件。一个是本身的工程，一个是Pods管理第三方库的工程。Podfile文件就是之前的Podfile文件，保存需要添加的第三方库。还有一个Podfile文件用来保存已经安装的第三方库的版本号。该文件对多人开发来说非常有用，团队中某用户check这份代码后，执行pod install命令得到的是与其它团队成员一致的第三方库版本。如果没有该文件，则会得到最新版本，与其他团队成员版本号不一致，这会为项目带来很大的困扰。
+
+5> 正确编译运行一个包含cocoapods类库的第三方库（就是你要用的第三方库又包含依赖其它的第三方库采用cocoapods管理）
+ 
+进入项目所在目录，输入命令:$pod update  （将文件中的所有第三方库更新到最新版本）
+ 
+这里就不再举例子了，掌握前面的，这个也就会了。
+ 
+小结：Podfile文件控制cocoapods该下载什么，文件名一定叫做Podfile且没有后缀。
+ 
+        每次都优先使用pod update 命令
+
+
+
+
