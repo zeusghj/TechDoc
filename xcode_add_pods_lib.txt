@@ -53,5 +53,51 @@ $pod search SDWebImage(以SDWebImage为例)
         每次都优先使用pod update 命令
 
 
+三，错误修复。
+有时候在执行 install 或 update 的时候会出现如下错误
+[!] The `BaoBei iOS [Debug]` target overrides the `GCC_PREPROCESSOR_DEFINITIONS` build setting defined in `Pods/Target Support Files/Pods/Pods.debug.xcconfig'. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.
+
+[!] The `BaoBei iOS [Debug]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods/Pods.debug.xcconfig'. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.
+
+[!] The `BaoBei iOS [Release]` target overrides the `GCC_PREPROCESSOR_DEFINITIONS` build setting defined in `Pods/Target Support Files/Pods/Pods.release.xcconfig'. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.
+
+[!] The `BaoBei iOS [Release]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods/Pods.release.xcconfig'. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.
+
+这种警告是不能忽视的，它带来的直接后果就是无法通过编译。
+
+而产生此警告的原因是项目 Target 中的一些设置，CocoaPods 也做了默认的设置，如果两个设置结果不一致，就会造成问题。
+
+我想要使用 CocoaPods 中的设置，分别在我的项目中定义`GCC_PREPROCESSOR_DEFINITIONS` 和 `OTHER_LDFLAGS`的地方，把他们的值用`$(inherited)`替换掉，进入终端，执行
+
+pod update
+ 警告没了，回到 Xcode，build通过。
+上面的解决办法 是刚从网上查到的，但我按照他说的还是没解决。先到这里，解决了，继续。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
