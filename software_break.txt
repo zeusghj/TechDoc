@@ -1,0 +1,2 @@
+1,phpStorm:
+注册时选择License server，填http://idea.lanyus.com，然后点击OK
