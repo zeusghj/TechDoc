@@ -1,2 +1,9 @@
+打开http://idea.lanyus.com/ 会发现破解方法
+
 1,phpStorm:
 注册时选择License server，填http://idea.lanyus.com，然后点击OK
+
+2，IntelliJ IDEA 注册码
+http://idea.qinxi1992.cn
+
+
