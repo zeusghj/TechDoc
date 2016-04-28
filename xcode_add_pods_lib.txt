@@ -4,13 +4,13 @@
  
 $gem sources –remove https://rubygems.org/
  
-$gem sources –a http://ruby.taobao.org/
+$gem sources –a https://ruby.taobao.org/
  
 $gem sources –l      (用该命令查看ruby镜像是否是taobao)
 
 2> 安装CocoaPods
 
-$sudo gem install cocoapods    (需要输入管理员密码)
+$sudo gem install -n /usr/local/bin cocoapods    (需要输入管理员密码)
  
  
  
